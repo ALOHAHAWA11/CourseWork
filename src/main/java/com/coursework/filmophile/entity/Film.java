@@ -22,10 +22,13 @@ public class Film {
     private byte[] poster;
     @Temporal(value = TemporalType.DATE)
     private Date dateRelease;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(name = "films_genres", joinColumns = @JoinColumn(name = "film_id"),
+//            inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "member_id")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(name = "films_members", joinColumns = @JoinColumn(name = "film_id"),
+//            inverseJoinColumns = @JoinColumn(name = "member_id"))
     private List<Member> members;
 
 }

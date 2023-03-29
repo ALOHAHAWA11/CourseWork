@@ -11,7 +11,7 @@ public interface IFilmService {
 
     FilmDTO saveFilm(FilmDTO filmDTO);
 
-    Optional<Film> getFilm(long id);
+    Optional<FilmDTO> getFilm(long id);
 
     FilmDTO updateFilm(FilmDTO filmDTO);
 

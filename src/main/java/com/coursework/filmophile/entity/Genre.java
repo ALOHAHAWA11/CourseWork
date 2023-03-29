@@ -15,7 +15,6 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "genre_id")
+    @ManyToMany(mappedBy = "genres")
     private List<Film> films;
 }

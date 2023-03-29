@@ -23,27 +23,31 @@ public class FilmDTO {
     private String annotation;
     private byte[] poster;
     private Date dateRelease;
-    private List<GenreDTO> genres;
-    private List<MemberDTO> members;
+    private List<Long> genres;
+    private List<Long> members;
 
     public static FilmDTO fromEntity(Film film) {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setId(film.getId());
         filmDTO.setOriginalName(film.getOriginalName());
         filmDTO.setName(film.getName());
-        filmDTO.setAnnotation(filmDTO.getAnnotation());
-        filmDTO.setPoster(filmDTO.getPoster());
+        filmDTO.setAnnotation(film.getAnnotation());
+        filmDTO.setPoster(film.getPoster());
         filmDTO.setDateRelease(film.getDateRelease());
-        List<GenreDTO> genres = new ArrayList<>();
-        List<MemberDTO> members = new ArrayList<>();
-        for (Genre genre : film.getGenres()) {
-            genres.add(GenreDTO.fromEntity(genre));
+        if (film.getGenres() != null) {
+            List<Long> genres = new ArrayList<>();
+            for (Genre genre : film.getGenres()) {
+                genres.add(genre.getId());
+            }
+            filmDTO.setGenres(genres);
         }
-        for (Member member : film.getMembers()) {
-            members.add(MemberDTO.fromEntity(member));
+        if (film.getMembers() != null) {
+            List<Long> members = new ArrayList<>();
+            for (Member member : film.getMembers()) {
+                members.add(member.getId());
+            }
+            filmDTO.setMembers(members);
         }
-        filmDTO.setGenres(genres);
-        filmDTO.setMembers(members);
         return filmDTO;
     }
 
@@ -55,16 +59,7 @@ public class FilmDTO {
         film.setAnnotation(filmDTO.getAnnotation());
         film.setPoster(filmDTO.getPoster());
         film.setDateRelease(filmDTO.getDateRelease());
-        List<Genre> genres = new ArrayList<>();
-        List<Member> members = new ArrayList<>();
-        for (GenreDTO genreDTO : filmDTO.getGenres()) {
-            genres.add(GenreDTO.toEntity(genreDTO));
-        }
-        for (MemberDTO memberDTO : filmDTO.getMembers()) {
-            members.add(memberDTO.toEntity(memberDTO));
-        }
-        film.setGenres(genres);
-        film.setMembers(members);
+
         return film;
     }
 }

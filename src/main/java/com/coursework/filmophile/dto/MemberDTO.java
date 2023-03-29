@@ -17,7 +17,7 @@ public class MemberDTO {
     private String name;
     private Date birthdate;
     private String information;
-    private List<FilmDTO> films;
+    private List<Long> films;
 
     public static MemberDTO fromEntity(Member member) {
         MemberDTO memberDTO = new MemberDTO();
@@ -25,11 +25,13 @@ public class MemberDTO {
         memberDTO.setName(member.getName());
         memberDTO.setInformation(member.getInformation());
         memberDTO.setBirthdate(member.getBirthdate());
-        List<FilmDTO> films = new ArrayList<>();
-        for (Film film : member.getFilms()) {
-            films.add(FilmDTO.fromEntity(film));
+        if (member.getFilms() != null) {
+            List<Long> films = new ArrayList<>();
+            for (Film film : member.getFilms()) {
+                films.add(film.getId());
+            }
+            memberDTO.setFilms(films);
         }
-        memberDTO.setFilms(films);
         return memberDTO;
     }
     public static Member toEntity(MemberDTO memberDTO) {
@@ -38,11 +40,6 @@ public class MemberDTO {
         member.setName(memberDTO.getName());
         member.setInformation(memberDTO.getInformation());
         member.setBirthdate(memberDTO.getBirthdate());
-        List<Film> films = new ArrayList<>();
-        for (FilmDTO filmDTO : memberDTO.getFilms()) {
-            films.add(FilmDTO.toEntity(filmDTO));
-        }
-        member.setFilms(films);
         return member;
     }
 

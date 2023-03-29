@@ -19,7 +19,7 @@ public class Member {
     @Temporal(value = TemporalType.DATE)
     private Date birthdate;
     private String information;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "film_id")
+   @ManyToMany(mappedBy = "members") //(targetEntity = Film.class,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+   //@JoinColumn(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private List<Film> films;
 }

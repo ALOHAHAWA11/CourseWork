@@ -15,5 +15,5 @@ public interface IGenreService {
 
     GenreDTO updateGenre(GenreDTO genreDTO);
 
-    long delereGenre(long id);
+    long deleteGenre(long id);
 }
