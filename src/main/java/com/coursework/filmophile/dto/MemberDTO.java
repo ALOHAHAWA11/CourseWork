@@ -17,6 +17,7 @@ public class MemberDTO {
     private String name;
     private Date birthdate;
     private String information;
+    private String image;
     private List<Long> films;
 
     public static MemberDTO fromEntity(Member member) {

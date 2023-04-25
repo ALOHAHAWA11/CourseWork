@@ -21,7 +21,7 @@ public class FilmDTO {
     private String originalName;
     private String name;
     private String annotation;
-    private byte[] poster;
+    private String poster;
     private Date dateRelease;
     private List<Long> genres;
     private List<Long> members;

@@ -1,5 +1,6 @@
 package com.coursework.filmophile.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,8 @@ public class Member {
     @Temporal(value = TemporalType.DATE)
     private Date birthdate;
     private String information;
-   @ManyToMany(mappedBy = "members") //(targetEntity = Film.class,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-   //@JoinColumn(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private String image;
+    @JsonIgnore
+   @ManyToMany(mappedBy = "members")
     private List<Film> films;
 }

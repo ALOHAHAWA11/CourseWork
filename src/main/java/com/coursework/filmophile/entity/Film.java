@@ -1,5 +1,6 @@
 package com.coursework.filmophile.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,17 +19,12 @@ public class Film {
     private String originalName;
     private String name;
     private String annotation;
-    @Lob
-    private byte[] poster;
+    private String poster;
     @Temporal(value = TemporalType.DATE)
     private Date dateRelease;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinTable(name = "films_genres", joinColumns = @JoinColumn(name = "film_id"),
-//            inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinTable(name = "films_members", joinColumns = @JoinColumn(name = "film_id"),
-//            inverseJoinColumns = @JoinColumn(name = "member_id"))
     private List<Member> members;
 
 }
